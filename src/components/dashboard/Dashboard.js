@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Notifications from './Notifications';
 import ProposalList from '../proposal/ProposalList';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
@@ -8,16 +7,23 @@ import { compose } from 'redux';
 class Dashboard extends Component {
   render() {
     const { proposals } = this.props;
-    //console.log(this.props);
     return(
-      <div className="dashboard container">
-        <div className="row">
-          <div className="col s12 m6">
-            <ProposalList proposals={proposals} />
-          </div>
-          <div className="col s12 m5 offset-m1">
-            <Notifications />
-          </div>
+      <div className="dashboard">
+        <h3 className="roboto-font center">New</h3>
+        <div className="container">
+          <ProposalList proposals={proposals} category='0'/>
+        </div>
+        <h3 className="roboto-font center">Accepted</h3>
+        <div className="container">
+          <ProposalList proposals={proposals} category='1'/>
+        </div>
+        <h3 className="roboto-font center">Maybe</h3>
+        <div className="container">
+          <ProposalList proposals={proposals} category='2'/>
+        </div>
+        <h3 className="roboto-font center">Rejected</h3>
+        <div className="container">
+          <ProposalList proposals={proposals} category='3'/>
         </div>
       </div>
     );

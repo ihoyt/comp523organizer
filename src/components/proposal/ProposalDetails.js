@@ -11,12 +11,17 @@ const  ProposalDetails = (props) => {
         <div className="card z-depth">
           <div className="card-content">
             <span className="card-title">{ proposal.title }</span>
-            <p>{ proposal.content }</p>
+            <p>{ proposal.summary }</p>
           </div>
           <div className="card-action grey lighten-4 grey-text">
-            <div>Posted by { proposal.authorFirstName } { proposal.authorLastName }</div>
-            <div>2nd September, 2am</div>
+            <div>Submitted by { proposal.proposeeFname } { proposal.proposeeLname }</div>
+            <div>{proposal.proposeeEmail}</div>
           </div>
+        </div>
+        <div className="row">
+          <div className="col s2"><button className="btn-large blue waves-effect">Accept</button></div>
+          <div className="col s2"><button className="btn-large waves-effect">Maybe</button></div>
+          <div className="col s2"><button className="btn-large red waves-effect">Reject</button></div>
         </div>
       </div>
     );

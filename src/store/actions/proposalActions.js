@@ -10,7 +10,8 @@ export const createProposal = (proposal) => {
 
     firestore.collection('proposals').add({
       ...proposal,
-      semeseter: date
+      semeseter: date,
+      category: 0
     }).then(() => {
         dispatch({ type: 'CREATE_PROPOSAL', proposal });
     }).catch((err) => {
