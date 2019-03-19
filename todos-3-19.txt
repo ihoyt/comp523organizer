@@ -4,5 +4,6 @@
 -filter by semester + send email by semester(?)
 -user agreement agreeing before submission
 -route for create project for proposees
+-submit PPT with proposal
 -auth
 -look less like shite
