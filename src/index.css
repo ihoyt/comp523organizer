@@ -10,8 +10,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
   min-height: 100%;
+  background-color: #62C6F2;
 }
 
 code {
@@ -22,6 +22,7 @@ code {
 form {
   padding: 20px;
   margin-top: 60px;
+  margin-bottom: 20px;
 }
 
 form button, form h5 {
@@ -38,4 +39,36 @@ textarea.materialize-textarea:focus:not([readonly]){
 
 .roboto-font {
   font-family: 'Roboto', sans-serif;
+}
+
+strong {
+  font-weight: bold;
+}
+
+.proposal-list {
+  border: 2px solid black;
+  padding: 30px 2px;
+  margin: 20px 0;
+  background-color: white;
+}
+
+.details-card {
+  border: 1px solid black;
+}
+
+.btn-large {
+  border: 1px solid black;
+}
+
+.btn-row {
+  background-color: white;
+  padding: 6px;
+  margin: 10px 0;
+  width: 50%;
+  border: 1px solid black;
+}
+
+.dashboard-header {
+  font-weight: 700;
+  text-decoration: underline;
 }

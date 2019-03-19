@@ -1,9 +1,5 @@
 const initState = {
-  proposals:  [
-    {id: '1', title: 'this is the first object', content: 'blah blah blah blah'},
-    {id: '2', title: 'this is the second object', content: 'blah blah blah blah'},
-    {id: '3', title: 'this is the third object', content: 'blah blah blah blah'}
-  ]
+  proposals:  []
 }
 
 const proposalReducer = (state = initState, action) => {
@@ -12,6 +8,12 @@ const proposalReducer = (state = initState, action) => {
       console.log("Proposal submitted", action.proposal);
       return state;
     case 'CREATE_PROPOSAL_ERROR':
+      console.log("Submit proposal error", action.err);
+      return state;
+    case 'CHANGE_PROPOSAL_CATEGORY':
+      console.log("Category changed", action.categoryChange);
+      return state;
+    case 'CHANGE_PROPOSAL_CATEGORY_ERROR':
       console.log("Submit proposal error", action.err);
       return state;
     default:

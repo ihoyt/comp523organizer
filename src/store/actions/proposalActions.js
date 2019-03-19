@@ -19,3 +19,20 @@ export const createProposal = (proposal) => {
     });
   }
 }
+
+export const changeProposalCategory = (categoryChange) => {
+  console.log(categoryChange);
+  return (dispatch, getState, { getFirebase, getFirestore }) => {
+    // make async call to
+    const firestore = getFirestore();
+
+    firestore.collection('proposals').doc(categoryChange.id).set({
+      ...categoryChange.proposal,
+      category: categoryChange.category
+    }).then(() => {
+        dispatch({ type: 'CHANGE_PROPOSAL_CATEGORY', categoryChange });
+    }).catch((err) => {
+        dispatch({ type: 'CHANGE_PROPOSAL_CATEGORY_ERROR', err});
+    });
+  }
+}

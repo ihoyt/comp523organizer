@@ -5,25 +5,35 @@ import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
 
 class Dashboard extends Component {
-  render() {
+
+  getProposalsByCategory = (category) => {
     const { proposals } = this.props;
+    if (proposals) {
+      let pros = proposals.filter(proposal => {
+        return proposal.category === category;
+      });
+      return pros;
+    }
+  }
+
+  render() {
     return(
       <div className="dashboard">
-        <h3 className="roboto-font center">New</h3>
+        <h3 className="roboto-font center dashboard-header">New</h3>
         <div className="container">
-          <ProposalList proposals={proposals} category='0'/>
+          <ProposalList proposals={this.getProposalsByCategory(0)} />
         </div>
-        <h3 className="roboto-font center">Accepted</h3>
+        <h3 className="roboto-font center dashboard-header">Accepted</h3>
         <div className="container">
-          <ProposalList proposals={proposals} category='1'/>
+          <ProposalList proposals={this.getProposalsByCategory(1)} />
         </div>
-        <h3 className="roboto-font center">Maybe</h3>
+        <h3 className="roboto-font center dashboard-header">Maybe</h3>
         <div className="container">
-          <ProposalList proposals={proposals} category='2'/>
+          <ProposalList proposals={this.getProposalsByCategory(2)} />
         </div>
-        <h3 className="roboto-font center">Rejected</h3>
+        <h3 className="roboto-font center dashboard-header">Rejected</h3>
         <div className="container">
-          <ProposalList proposals={proposals} category='3'/>
+          <ProposalList proposals={this.getProposalsByCategory(3)} />
         </div>
       </div>
     );
