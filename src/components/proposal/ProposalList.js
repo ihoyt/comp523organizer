@@ -10,6 +10,8 @@ const ProposalList = ({proposals}) => {
     slidesToScroll: 3,
   }
 
+
+  // Needs this, otherwise there's weird behavior with less than 3 items
   if (proposals && (proposals.length < 3 && proposals.length > 0)) {
     settings = {
       ...settings,
