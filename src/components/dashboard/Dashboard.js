@@ -19,19 +19,19 @@ class Dashboard extends Component {
   render() {
     return(
       <div className="dashboard">
-        <h3 className="roboto-font center dashboard-header">New</h3>
+        <h3 className="roboto-font center dashboard-h">New</h3>
         <div className="container">
           <ProposalList proposals={this.getProposalsByCategory(0)} />
         </div>
-        <h3 className="roboto-font center dashboard-header">Accepted</h3>
+        <h3 className="roboto-font center dashboard-h">Accepted</h3>
         <div className="container">
           <ProposalList proposals={this.getProposalsByCategory(1)} />
         </div>
-        <h3 className="roboto-font center dashboard-header">Maybe</h3>
+        <h3 className="roboto-font center dashboard-h">Maybe</h3>
         <div className="container">
           <ProposalList proposals={this.getProposalsByCategory(2)} />
         </div>
-        <h3 className="roboto-font center dashboard-header">Rejected</h3>
+        <h3 className="roboto-font center dashboard-h">Rejected</h3>
         <div className="container">
           <ProposalList proposals={this.getProposalsByCategory(3)} />
         </div>

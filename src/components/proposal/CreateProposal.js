@@ -27,7 +27,7 @@ class CreateProposal extends Component {
   render() {
     return(
       <div className="container">
-        <form onSubmit={this.handleSubmit} className="white">
+        <form onSubmit={this.handleSubmit} className="white create-form">
          <h5 className="grey-text text-darken-3">Create Proposal</h5>
          <div className="input-field">
            <label htmlFor="title">Title</label>

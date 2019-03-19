@@ -5,6 +5,7 @@
   "dependencies": {
     "firebase": "^5.8.5",
     "react": "^16.8.3",
+    "react-collapsible": "^2.6.0",
     "react-dom": "^16.8.3",
     "react-redux": "5.0.7",
     "react-redux-firebase": "^2.2.6",
