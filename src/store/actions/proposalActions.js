@@ -21,7 +21,6 @@ export const createProposal = (proposal) => {
 }
 
 export const changeProposalCategory = (categoryChange) => {
-  console.log(categoryChange);
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     // make async call to
     const firestore = getFirestore();

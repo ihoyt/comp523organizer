@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import Collapsible from 'react-collapsible';
+import { connect } from 'react-redux';
+import { changeEmailTemplate } from '../../store/actions/emailActions';
 
 class EmailTemplate extends Component {
 
   state = {
-    subject: '',
-    body: ''
+    subject: this.props.email[0].subject,
+    body: this.props.email[0].body
   }
 
   handleChange = (e) => {
@@ -17,6 +19,18 @@ class EmailTemplate extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     console.log(this.state);
+    console.log(this.props);
+
+    if (this.props.email[0]) {
+
+      const templateChange = {
+        ...this.state,
+
+        id: this.props.email[0].id
+      }
+
+      this.props.changeEmailTemplate(templateChange);
+    }
   }
 
   render() {
@@ -38,7 +52,7 @@ class EmailTemplate extends Component {
            <textarea id="body" className="materialize-textarea" onChange={this.handleChange}></textarea>
          </div>
          <div className="input-field">
-           <button className="btn blue z-depth-0">Submit changes</button>
+           <button className="btn blue z-depth-0" onClick={this.handleSubmit}>Submit changes</button>
          </div>
        </form>
      </Collapsible>
@@ -46,5 +60,10 @@ class EmailTemplate extends Component {
   }
 }
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+      changeEmailTemplate: (templateChange) => dispatch(changeEmailTemplate(templateChange))
+  }
+}
 
-export default EmailTemplate;
+export default connect(null, mapDispatchToProps)(EmailTemplate);
