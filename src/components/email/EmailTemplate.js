@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
+import Collapsible from 'react-collapsible';
 
 class EmailTemplate extends Component {
-  const type = this.props.type;
 
   state = {
     subject: '',
@@ -16,14 +16,19 @@ class EmailTemplate extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log(state);
+    console.log(this.state);
   }
 
   render() {
+
+    let type = this.props.email[0].type;
+    type = type.charAt(0).toUpperCase() + type.slice(1);
+    const formTitle = type + " Proposals";
+
     return(
-      <Collapsible trigger= {type}" Proposals">
+      <Collapsible trigger={formTitle}>
         <form onSubmit={this.handleSubmit} className="white">
-         <h5 className="grey-text text-darken-3">Request Proposals</h5>
+         <h5 className="grey-text text-darken-3">{type}</h5>
          <div className="input-field">
            <label htmlFor="subject">Subject Line</label>
            <input type="text" id="subject" onChange={this.handleChange}/>
@@ -40,3 +45,6 @@ class EmailTemplate extends Component {
     )
   }
 }
+
+
+export default EmailTemplate;
