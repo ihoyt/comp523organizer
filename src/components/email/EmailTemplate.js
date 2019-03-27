@@ -27,6 +27,8 @@ class EmailTemplate extends Component {
     }
 
     this.props.changeEmailTemplate(templateChange);
+    let form = this.refs.form;
+    form.append("Changes submitted");
   }
 
   componentDidMount() {
@@ -35,8 +37,19 @@ class EmailTemplate extends Component {
       this.setState({
         subject: email.subject,
         body: email.body
+      }, () => {
+        let subj_input = this.refs.subject;
+        subj_input.value = this.state.subject;
+        let body_input = this.refs.body;
+        body_input.value = this.state.body;
+
+        if (this.state.subject !== "") {
+          let subj_label = this.refs.subject_label;
+          subj_label.className += "active";
+          let body_label = this.refs.body_label;
+          body_label.className += "active";
+        }
       });
-      console.log(this.state);
     }
   }
 
@@ -50,14 +63,14 @@ class EmailTemplate extends Component {
 
       return(
         <Collapsible trigger={formTitle}>
-          <form onSubmit={this.handleSubmit} className="white">
+          <form onSubmit={this.handleSubmit} className="white" ref="form">
            <h5 className="grey-text text-darken-3">{type}</h5>
            <div className="input-field">
-             <label htmlFor="subject">Subject Line</label>
+             <label htmlFor="subject" ref="subject_label">Subject Line</label>
              <input type="text" id="subject" ref="subject" onChange={this.handleChange}/>
            </div>
            <div className="input-field">
-             <label htmlFor="body">Email Body</label>
+             <label htmlFor="body" ref="body_label">Email Body</label>
              <textarea id="body" className="materialize-textarea" ref="body" onChange={this.handleChange}></textarea>
            </div>
            <div className="input-field">
