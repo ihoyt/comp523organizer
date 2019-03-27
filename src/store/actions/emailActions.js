@@ -4,7 +4,7 @@ export const changeEmailTemplate = (templateChange) => {
     const firestore = getFirestore();
 
     firestore.collection('emails').doc(templateChange.id).set({
-      ...templateChange.email
+      ...templateChange
     }).then(() => {
         dispatch({ type: 'CHANGE_EMAIL_TEMPLATE', templateChange });
     }).catch((err) => {

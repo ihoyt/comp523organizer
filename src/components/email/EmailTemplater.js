@@ -12,7 +12,7 @@ class EmailTemplater extends Component {
       let email = emails.filter(email => {
         return email.type === type;
       });
-      return email;
+      return email[0];
     }
   }
 
