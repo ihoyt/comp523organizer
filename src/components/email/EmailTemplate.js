@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Collapsible from 'react-collapsible';
 import { connect } from 'react-redux';
 import { changeEmailTemplate } from '../../store/actions/emailActions';
+import ReactQuill from 'react-quill';
 
 class EmailTemplate extends Component {
 
@@ -11,9 +12,16 @@ class EmailTemplate extends Component {
   }
 
   handleChange = (e) => {
-    this.setState({
-      [e.target.id]: e.target.value
-    });
+    if (e.target) {
+      this.setState({
+        [e.target.id]: e.target.value
+      });
+    } else {
+        let quill = this.refs.quill;
+        this.setState({
+          body: quill.getEditor().getText()
+        });
+    }
   }
 
   handleSubmit = (e) => {
@@ -73,6 +81,7 @@ class EmailTemplate extends Component {
              <label htmlFor="body" ref="body_label">Email Body</label>
              <textarea id="body" className="materialize-textarea" ref="body" onChange={this.handleChange}></textarea>
            </div>
+           <ReactQuill ref="quill" value={this.state.body} onChange={this.handleChange} />
            <div className="input-field">
              <button className="btn blue z-depth-0" onClick={this.handleSubmit}>Submit changes</button>
            </div>
