@@ -48,14 +48,12 @@ class EmailTemplate extends Component {
       }, () => {
         let subj_input = this.refs.subject;
         subj_input.value = this.state.subject;
-        let body_input = this.refs.body;
-        body_input.value = this.state.body;
+        let quill = this.refs.quill.getEditor();
+        quill.insertText(0, this.state.body);
 
         if (this.state.subject !== "") {
           let subj_label = this.refs.subject_label;
           subj_label.className += "active";
-          let body_label = this.refs.body_label;
-          body_label.className += "active";
         }
       });
     }
@@ -77,11 +75,10 @@ class EmailTemplate extends Component {
              <label htmlFor="subject" ref="subject_label">Subject Line</label>
              <input type="text" id="subject" ref="subject" onChange={this.handleChange}/>
            </div>
-           <div className="input-field">
-             <label htmlFor="body" ref="body_label">Email Body</label>
-             <textarea id="body" className="materialize-textarea" ref="body" onChange={this.handleChange}></textarea>
-           </div>
-           <ReactQuill ref="quill" value={this.state.body} onChange={this.handleChange} />
+           <div>
+              <label>Body</label>
+              <ReactQuill ref="quill" onChange={this.handleChange} />
+            </div>
            <div className="input-field">
              <button className="btn blue z-depth-0" onClick={this.handleSubmit}>Submit changes</button>
            </div>
