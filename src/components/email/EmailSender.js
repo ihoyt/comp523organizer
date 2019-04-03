@@ -2,7 +2,11 @@ import React, { Component } from 'react';
 
 class EmailSender extends Component {
   state = {
+    text: ''
+  }
 
+  handleChange = (e) => {
+    console.log(e);
   }
 
   render() {
