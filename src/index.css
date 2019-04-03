@@ -90,3 +90,8 @@ strong {
   border-: 1px solid black;
   margin: 2px 0;
 }
+
+.filter-container {
+  width: 10%;
+  margin-top: 20px;
+}
