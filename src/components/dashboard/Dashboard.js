@@ -12,9 +12,15 @@ class Dashboard extends Component {
 
   getProposalsByCategory = (category) => {
     const { proposals } = this.props;
+    const { filter } = this.state;
+
     if (proposals) {
       let pros = proposals.filter(proposal => {
-        return proposal.category === category;
+        if (!filter || filter === "all") {
+          return proposal.category === category;
+        } else if (filter && filter !== "all") {
+          return proposal.category === category && proposal.semeseter === filter;
+        }
       });
       return pros;
     }
@@ -38,6 +44,13 @@ class Dashboard extends Component {
     return choices;
   }
 
+  handleChange = (filter) => {
+    this.setState({
+        filter: filter.value}, () => {
+      console.log(this.state);
+    });
+  }
+
   render() {
     let semesters = this.getSemesterChoices();
 
@@ -47,6 +60,7 @@ class Dashboard extends Component {
           <Select
             defaultValue={ {value: 'all', label: "All"} }
             options={semesters}
+            onChange={this.handleChange}
           />
         </div>
         <h3 className="roboto-font center dashboard-h">New</h3>
