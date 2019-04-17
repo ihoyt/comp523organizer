@@ -12,7 +12,14 @@ class EmailTemplater extends Component {
       let email = emails.filter(email => {
         return email.type === type;
       });
-      return email[0];
+      if (typeof email[0] !== 'undefined') {
+        return email[0];
+      } else {
+        let email = { subject: '', body: '', type: type };
+        return email;
+      }
+    } else {
+      return null;
     }
   }
 
