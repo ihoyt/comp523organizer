@@ -28,11 +28,13 @@ class EmailTemplater extends Component {
     if (emails) {
       return(
         <div className="container email-templater">
-          <h3 className="center">Email Templates</h3>
+          <h3 className="center">Templates</h3>
+          <h4>Email</h4>
           <EmailTemplate email={this.getEmailTemplate('request') } />
           <EmailTemplate email={this.getEmailTemplate('accepted') } />
           <EmailTemplate email={this.getEmailTemplate('maybe') } />
           <EmailTemplate email={this.getEmailTemplate('rejected') } />
+          <h4>Client Agreement</h4>
           <EmailTemplate email={this.getEmailTemplate('agreement') } />
         </div>
       )
