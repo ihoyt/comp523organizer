@@ -20,7 +20,7 @@ class App extends Component {
             <Route path='/signin' component={SignIn} />
             <Route path='/create' component={CreateProposal} />
             <Route path='/sendmail' component={EmailSender} />
-            <Route path='/emailtemplates' component={EmailTemplater} />
+            <Route path='/templates' component={EmailTemplater} />
           </Switch>
         </div>
       </BrowserRouter>
