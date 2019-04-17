@@ -8,7 +8,9 @@ class CreateProposal extends Component {
     summary: '',
     proposeeFname: '',
     proposeeLname: '',
-    proposeeEmail: ''
+    proposeeEmail: '',
+    proposeeOrg:'',
+    proposeePhone: ''
   }
 
   handleChange = (e) => {
@@ -48,6 +50,14 @@ class CreateProposal extends Component {
          <div className="input-field">
            <label htmlFor="proposeeEmail">Email</label>
            <textarea id="proposeeEmail" className="materialize-textarea" onChange={this.handleChange}></textarea>
+         </div>
+         <div className="input-field">
+           <label htmlFor="proposeeOrg">Organization</label>
+           <textarea id="proposeeOrg" className="materialize-textarea" onChange={this.handleChange}></textarea>
+         </div>
+         <div className="input-field">
+           <label htmlFor="proposeePhone">Phone Number</label>
+           <textarea id="proposeePhone" className="materialize-textarea" onChange={this.handleChange}></textarea>
          </div>
          <div className="input-field">
            <button className="btn blue z-depth-0">Submit Proposal</button>

@@ -35,6 +35,8 @@ const  ProposalDetails = (props) => {
           <div className="card-action grey lighten-4 grey-text">
             <div>Submitted by { proposal.proposeeFname } { proposal.proposeeLname }</div>
             <div>{proposal.proposeeEmail}</div>
+            <div>{proposal.proposeeOrg}</div>
+            <div>{proposal.proposeePhone}</div>
           </div>
         </div>
         <div className="row btn-row">
