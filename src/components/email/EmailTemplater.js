@@ -26,6 +26,7 @@ class EmailTemplater extends Component {
           <EmailTemplate email={this.getEmailTemplate('accepted') } />
           <EmailTemplate email={this.getEmailTemplate('maybe') } />
           <EmailTemplate email={this.getEmailTemplate('rejected') } />
+          <EmailTemplate email={this.getEmailTemplate('agreement') } />
         </div>
       )
     } else {
