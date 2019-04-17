@@ -65,7 +65,7 @@ class EmailTemplate extends Component {
 
       let type = email.type;
       type = type.charAt(0).toUpperCase() + type.slice(1);
-      const formTitle = type + " Proposals";
+      const formTitle = type === 'Agreement' ? type : type + " Proposals";
 
       return(
         <Collapsible trigger={formTitle}>
