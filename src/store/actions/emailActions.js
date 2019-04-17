@@ -2,6 +2,7 @@ export const changeEmailTemplate = (templateChange) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     // make async call to
     const firestore = getFirestore();
+    console.log(templateChange);
     if (typeof templateChange.id !== 'undefined') {
       firestore.collection('emails').doc(templateChange.id).set({
         ...templateChange
@@ -11,7 +12,7 @@ export const changeEmailTemplate = (templateChange) => {
           dispatch({ type: 'CHANGE_EMAIL_TEMPLATE_ERROR', err});
       });
     } else {
-      templateChange.id = null;
+      delete templateChange.id;
       firestore.collection('emails').add({
         ...templateChange
       }).then(() => {
