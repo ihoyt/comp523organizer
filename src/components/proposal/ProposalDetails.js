@@ -25,28 +25,33 @@ const  ProposalDetails = (props) => {
   }
 
   if (proposal) {
-      return (
-      <div className="container section proposal-details">
-        <div className="card z-depth details-card">
-          <div className="card-content">
-            <span className="card-title">{ proposal.title }</span>
-            <p>{ proposal.summary }</p>
-          </div>
-          <div className="card-action grey lighten-4 grey-text">
-            <div>Submitted by { proposal.proposeeFname } { proposal.proposeeLname }</div>
-            <div>{proposal.proposeeEmail}</div>
-            <div>{proposal.proposeeOrg}</div>
-            <div>{proposal.proposeePhone}</div>
-          </div>
+    let url = '';
+    if (proposal.proposeeURL) {
+      url = proposal.proposeeURL.includes('http') ? proposal.proposeeURL : 'http://' + proposal.proposeeURL;
+    }
+    return (
+    <div className="container section proposal-details">
+      <div className="card z-depth details-card">
+        <div className="card-content">
+          <span className="card-title">{ proposal.title }</span>
+          <p>{ proposal.summary }</p>
+          <p><br /></p>
+          <a href={url}>{ proposal.proposeeURL}</a>
         </div>
-        <div className="row btn-row">
-          <div className="col s4"><button name="1" className="btn-large blue waves-effect" type="submit" onClick={handleSubmit}>Accept</button></div>
-          <div className="col s4"><button name="2" className="btn-large waves-effect" type="submit" onClick={handleSubmit}>Maybe</button></div>
-          <div className="col s4"><button name="3" className="btn-large red waves-effect" type="submit" onClick={handleSubmit}>Reject</button></div>
+        <div className="card-action grey lighten-4 grey-text">
+          <div>Submitted by { proposal.proposeeFname } { proposal.proposeeLname }</div>
+          <span>{proposal.proposeeEmail} - </span><span>{proposal.proposeePhone}</span>
+          <div>{proposal.proposeeOrg}</div>
         </div>
-        <p>Proposal is currently: <strong>{category}</strong></p>
       </div>
-    );
+      <div className="row btn-row">
+        <div className="col s4"><button name="1" className="btn-large blue waves-effect" type="submit" onClick={handleSubmit}>Accept</button></div>
+        <div className="col s4"><button name="2" className="btn-large waves-effect" type="submit" onClick={handleSubmit}>Maybe</button></div>
+        <div className="col s4"><button name="3" className="btn-large red waves-effect" type="submit" onClick={handleSubmit}>Reject</button></div>
+      </div>
+      <p>Proposal is currently: <strong>{category}</strong></p>
+    </div>
+  );
   } else {
       return (
         <div className="container center">
