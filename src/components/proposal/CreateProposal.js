@@ -64,7 +64,7 @@ class CreateProposal extends Component {
            </div>
            <div>
              <label>Project Summary</label>
-             <textarea type="text" id="summary" onChange={this.handleChange} rows="10" class="summary-textarea"></textarea>
+             <textarea type="text" id="summary" onChange={this.handleChange} rows="10" className="summary-textarea"></textarea>
            </div>
          <div className="input-field">
            <button className="btn blue z-depth-0">Submit Proposal</button>
