@@ -19,8 +19,9 @@ class EmailTemplate extends Component {
     } else {
         let quill = this.refs.quill;
         this.setState({
-          body: quill.getEditor().getText()
+          body: quill.state.value
         });
+
     }
   }
 
@@ -48,8 +49,8 @@ class EmailTemplate extends Component {
       }, () => {
         let subj_input = this.refs.subject;
         subj_input.value = this.state.subject;
-        let quill = this.refs.quill.getEditor();
-        quill.insertText(0, this.state.body);
+        let quill = this.refs.quill;
+        quill.getEditor().pasteHTML(this.state.body);
 
         if (this.state.subject !== "") {
           let subj_label = this.refs.subject_label;
