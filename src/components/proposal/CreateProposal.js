@@ -10,7 +10,8 @@ class CreateProposal extends Component {
     proposeeLname: '',
     proposeeEmail: '',
     proposeeOrg:'',
-    proposeePhone: ''
+    proposeePhone: '',
+    proposeeURL: ''
   }
 
   handleChange = (e) => {
@@ -31,34 +32,40 @@ class CreateProposal extends Component {
       <div className="container">
         <form onSubmit={this.handleSubmit} className="white create-form">
          <h5 className="grey-text text-darken-3">Create Proposal</h5>
-         <div className="input-field">
-           <label htmlFor="title">Title</label>
-           <input type="text" id="title" onChange={this.handleChange}/>
-         </div>
-         <div className="input-field">
-           <label htmlFor="summary">Project Summary</label>
-           <textarea id="summary" className="materialize-textarea" onChange={this.handleChange}></textarea>
-         </div>
+         <h6>Contact Information</h6>
          <div className="input-field">
            <label htmlFor="proposeeFname">First Name</label>
-           <textarea id="proposeeFname" className="materialize-textarea" onChange={this.handleChange}></textarea>
+           <input type="text" id="proposeeFname" className="materialize-textarea" onChange={this.handleChange} />
          </div>
          <div className="input-field">
            <label htmlFor="proposeeLname">Last Name</label>
-           <textarea id="proposeeLname" className="materialize-textarea" onChange={this.handleChange}></textarea>
+           <input type="text" id="proposeeLname" className="materialize-textarea" onChange={this.handleChange} />
          </div>
          <div className="input-field">
            <label htmlFor="proposeeEmail">Email</label>
-           <textarea id="proposeeEmail" className="materialize-textarea" onChange={this.handleChange}></textarea>
+           <input type="text" id="proposeeEmail" className="materialize-textarea" onChange={this.handleChange} />
          </div>
          <div className="input-field">
            <label htmlFor="proposeeOrg">Organization</label>
-           <textarea id="proposeeOrg" className="materialize-textarea" onChange={this.handleChange}></textarea>
+           <input type="text" id="proposeeOrg" className="materialize-textarea" onChange={this.handleChange} />
          </div>
          <div className="input-field">
            <label htmlFor="proposeePhone">Phone Number</label>
-           <textarea id="proposeePhone" className="materialize-textarea" onChange={this.handleChange}></textarea>
+           <input type="text" id="proposeePhone" className="materialize-textarea" onChange={this.handleChange} />
          </div>
+         <h6>Proposal Details</h6>
+           <div className="input-field">
+             <label htmlFor="title">Title</label>
+             <input type="text" id="title" onChange={this.handleChange} />
+           </div>
+           <div className="input-field">
+             <label htmlFor="proposeeURL">(optional) Link to any web resources related to your proposal</label>
+             <input type="text" id="proposeeURL" onChange={this.handleChange}/>
+           </div>
+           <div>
+             <label>Project Summary</label>
+             <textarea type="text" id="summary" onChange={this.handleChange} rows="10" class="summary-textarea"></textarea>
+           </div>
          <div className="input-field">
            <button className="btn blue z-depth-0">Submit Proposal</button>
          </div>

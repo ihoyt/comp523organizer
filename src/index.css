@@ -95,3 +95,7 @@ strong {
   width: 10%;
   margin-top: 20px;
 }
+
+.summary-textarea {
+  height: 200px;
+}
