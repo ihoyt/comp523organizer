@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createProposal } from '../../store/actions/proposalActions';
+import Modal from 'react-modal';
+import { compose } from 'redux';
+import { firestoreConnect } from 'react-redux-firebase';
 
 class CreateProposal extends Component {
   state = {
@@ -11,13 +14,18 @@ class CreateProposal extends Component {
     proposeeEmail: '',
     proposeeOrg:'',
     proposeePhone: '',
-    proposeeURL: ''
+    proposeeURL: '',
+    modalIsOpen: false
   }
 
   handleChange = (e) => {
     this.setState({
       [e.target.id]: e.target.value
     });
+  }
+
+  componentDidMount() {
+    Modal.setAppElement("#proposal-form");
   }
 
   handleSubmit = (e) => {
@@ -27,9 +35,22 @@ class CreateProposal extends Component {
     this.props.history.push('/');
   }
 
+  openModal= () => {
+    this.setState({modalIsOpen: true});
+  }
+
+  closeModal = () => {
+    this.setState({modalIsOpen: false});
+  }
+
   render() {
+    if (!this.props.agreement) {
+      return(
+        <div id="proposal-form">Loading form...</div>
+      )
+    } else {
     return(
-      <div className="container">
+      <div className="container" id="proposal-form">
         <form onSubmit={this.handleSubmit} className="white create-form">
          <h5 className="grey-text text-darken-3">Create Proposal</h5>
          <h6>Contact Information</h6>
@@ -69,9 +90,28 @@ class CreateProposal extends Component {
          <div className="input-field">
            <button className="btn blue z-depth-0">Submit Proposal</button>
          </div>
+         <div>
+           <button type="button" onClick={this.openModal}>Sign client agreement</button>
+         </div>
+         <Modal
+           isOpen={this.state.modalIsOpen}
+           onRequestClose={this.closeModal}
+           contentLabel="Agreement"
+          >
+          <h3 id="agreement-header">{this.props.agreement[0].subject}</h3>
+          <p id="agreement-body">{this.props.agreement[0].body}</p>
+          <input type="checkbox" /><span>I Agree</span>
+        </Modal>
        </form>
       </div>
     );
+  }
+}
+}
+
+const mapStateToProps = (state) => {
+  return {
+    agreement: state.firestore.ordered.emails
   }
 }
 
@@ -81,4 +121,11 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(CreateProposal);
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  firestoreConnect([
+    { collection: 'emails',
+      where: [['type', '==', 'agreement']]
+    }
+  ])
+)(CreateProposal);
