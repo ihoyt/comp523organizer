@@ -76,9 +76,6 @@ class CreateProposal extends Component {
          <div className="input-field">
            <button className="btn blue z-depth-0">Submit Proposal</button>
          </div>
-         <div>
-           <button type="button" onClick={this.openModal}>Sign client agreement</button>
-         </div>
        </form>
       </div>
     );
