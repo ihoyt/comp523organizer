@@ -16,11 +16,7 @@ class Dashboard extends Component {
 
     if (proposals) {
       let pros = proposals.filter(proposal => {
-        if (!filter || filter === "all") {
-          return proposal.category === category;
-        } else if (filter && filter !== "all") {
-          return proposal.category === category && proposal.semeseter === filter;
-        }
+        return proposal.category === category && proposal.semester === filter;
       });
       return pros;
     }
@@ -28,59 +24,103 @@ class Dashboard extends Component {
 
   getSemesterChoices = () => {
     const { proposals } = this.props;
-    let choices = [{ value: 'all', label: 'All'}];
+
+    let choices = [];
     let distinct = []; // Used to track if semester has already been added as option
 
     if (proposals) {
       proposals.forEach(function(proposal) {
-        if (!distinct.includes(proposal.semeseter) && proposal.semeseter !== ""
-              && typeof proposal.semeseter !== "undefined") {
-          distinct.push(proposal.semeseter);
-          choices.push({ value: proposal.semeseter, label: proposal.semeseter });
+        if (!distinct.includes(proposal.semester) && proposal.semester !== ""
+              && typeof proposal.semester !== "undefined") {
+          distinct.push(proposal.semester);
+          choices.push({ value: proposal.semester, label: proposal.semester });
         }
       });
     }
-
     return choices;
   }
 
   handleChange = (filter) => {
     this.setState({
         filter: filter.value}, () => {
-      console.log(this.state);
     });
   }
 
-  render() {
-    let semesters = this.getSemesterChoices();
+  findMostRecentSemester(semesters) {
+    let recent = semesters[0];
+    for (let i = 0; i < semesters.length; i++) {
+      var year = semesters[i].value.replace( /^\D+/g, '');
+      if (year > recent.value.replace( /^\D+/g, '')) {
+        recent = semesters[i];
+      } else if (year === recent.value.replace( /^\D+/g, '')) {
+        if (recent.value.includes("Spring") && semesters[i].value.includes("Fall")) {
+          recent = semesters[i];
+        }
+      }
+    }
+    return recent;
+  }
 
-    return(
-      <div className="dashboard">
-        <div className="container filter-container">
-          <Select
-            defaultValue={ {value: 'all', label: "All"} }
-            options={semesters}
-            onChange={this.handleChange}
-          />
+  componentDidUpdate(prevProps, prevState) {
+    const semesters = this.getSemesterChoices();
+    const recent = this.findMostRecentSemester(semesters);
+
+    if (typeof prevProps.proposals === "undefined") {
+      this.setState({
+        filter: recent.value
+      });
+    }
+  }
+
+  componentDidMount() {
+    if (typeof this.props.proposals !== "undefined") {
+      const semesters = this.getSemesterChoices();
+      const recent = this.findMostRecentSemester(semesters);
+      this.setState({
+        filter: recent.value
+      });
+    }
+  }
+
+  render() {
+    const { proposals } = this.props;
+
+    if (proposals) {
+      let semesters = this.getSemesterChoices();
+      const recent = this.findMostRecentSemester(semesters);
+
+      return(
+        <div className="dashboard">
+          <div className="container filter-container">
+            <Select
+              defaultValue={ recent }
+              options={semesters}
+              onChange={this.handleChange}
+            />
+          </div>
+          <h3 className="roboto-font center dashboard-h">New</h3>
+          <div className="container">
+            <ProposalList proposals={this.getProposalsByCategory(0)} />
+          </div>
+          <h3 className="roboto-font center dashboard-h">Accepted</h3>
+          <div className="container">
+            <ProposalList proposals={this.getProposalsByCategory(1)} />
+          </div>
+          <h3 className="roboto-font center dashboard-h">Maybe</h3>
+          <div className="container">
+            <ProposalList proposals={this.getProposalsByCategory(2)} />
+          </div>
+          <h3 className="roboto-font center dashboard-h">Rejected</h3>
+          <div className="container">
+            <ProposalList proposals={this.getProposalsByCategory(3)} />
+          </div>
         </div>
-        <h3 className="roboto-font center dashboard-h">New</h3>
-        <div className="container">
-          <ProposalList proposals={this.getProposalsByCategory(0)} />
-        </div>
-        <h3 className="roboto-font center dashboard-h">Accepted</h3>
-        <div className="container">
-          <ProposalList proposals={this.getProposalsByCategory(1)} />
-        </div>
-        <h3 className="roboto-font center dashboard-h">Maybe</h3>
-        <div className="container">
-          <ProposalList proposals={this.getProposalsByCategory(2)} />
-        </div>
-        <h3 className="roboto-font center dashboard-h">Rejected</h3>
-        <div className="container">
-          <ProposalList proposals={this.getProposalsByCategory(3)} />
-        </div>
-      </div>
-    );
+      );
+    } else {
+      return(
+        <div>Loading proposals</div>
+      )
+    }
   };
 }
 

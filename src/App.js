@@ -12,7 +12,7 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <div className="App">
+        <div className="App" id="app">
           <Navbar />
           <Switch>
             <Route exact path='/' component={Dashboard} />

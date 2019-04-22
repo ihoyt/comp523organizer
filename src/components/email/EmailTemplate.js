@@ -27,17 +27,39 @@ class EmailTemplate extends Component {
 
   handleSubmit = (e) => {
     const { email } = this.props;
-
     e.preventDefault();
-    const templateChange = {
-      ...this.state,
-      type: email.type,
-      id: email.id
-    }
+    if (typeof this.state.body === 'undefined') {
+      let quill = this.refs.quill;
+      this.setState({
+        body: quill.state.value
+      }, () => {
+        const templateChange = {
+          ...this.state,
+          type: email.type,
+          id: email.id
+        }
 
-    this.props.changeEmailTemplate(templateChange);
-    let form = this.refs.form;
-    form.append("Changes submitted");
+        this.props.changeEmailTemplate(templateChange);
+        let div = this.refs.changemsg;
+        if (div.childNodes.length > 0) {
+          div.removeChild(div.childNodes[0]);
+        }
+        div.append("Changes submitted");
+      })
+    } else {
+        const templateChange = {
+          ...this.state,
+          type: email.type,
+          id: email.id
+        }
+
+        this.props.changeEmailTemplate(templateChange);
+        let div = this.refs.changemsg;
+        if (div.childNodes.length > 0) {
+          div.removeChild(div.childNodes[0]);
+        }
+        div.append("Changes submitted");
+      }
   }
 
   componentDidMount() {
@@ -82,6 +104,8 @@ class EmailTemplate extends Component {
             </div>
            <div className="input-field">
              <button className="btn blue z-depth-0" onClick={this.handleSubmit}>Submit changes</button>
+           </div>
+           <div id='change-msg' ref="changemsg">
            </div>
          </form>
        </Collapsible>

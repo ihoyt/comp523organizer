@@ -31,6 +31,8 @@ const ProposalList = ({proposals}) => {
                   <ProposalSummary proposal={proposal} key={proposal.id} />
                 </Link>
             )
+          } else {
+            return null;
           }
         })}
         </Slider>

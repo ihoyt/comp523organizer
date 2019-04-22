@@ -71,9 +71,11 @@ class CreateProposal extends Component {
         <div id="proposal-form">Loading form...</div>
       )
     } else {
+
       let tempDiv = document.createElement("div");
       tempDiv.innerHTML = this.props.agreement[0].body;
       const body = tempDiv.textContent || tempDiv.innerText || "";
+      
     return(
       <div className="container" id="proposal-form">
         <form onSubmit={this.handleSubmit} className="white create-form">
