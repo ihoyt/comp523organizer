@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createProposal } from '../../store/actions/proposalActions';
-import Modal from 'react-modal';
 import { compose } from 'redux';
 import { firestoreConnect } from 'react-redux-firebase';
 
@@ -14,8 +13,7 @@ class CreateProposal extends Component {
     proposeeEmail: '',
     proposeeOrg:'',
     proposeePhone: '',
-    proposeeURL: '',
-    modalIsOpen: false
+    proposeeURL: ''
   }
 
   handleChange = (e) => {
@@ -24,23 +22,11 @@ class CreateProposal extends Component {
     });
   }
 
-  componentDidMount() {
-    Modal.setAppElement("#proposal-form");
-  }
-
   handleSubmit = (e) => {
     e.preventDefault();
     //console.log(this.state);
     this.props.createProposal(this.state);
     this.props.history.push('/');
-  }
-
-  openModal= () => {
-    this.setState({modalIsOpen: true});
-  }
-
-  closeModal = () => {
-    this.setState({modalIsOpen: false});
   }
 
   render() {
@@ -93,15 +79,6 @@ class CreateProposal extends Component {
          <div>
            <button type="button" onClick={this.openModal}>Sign client agreement</button>
          </div>
-         <Modal
-           isOpen={this.state.modalIsOpen}
-           onRequestClose={this.closeModal}
-           contentLabel="Agreement"
-          >
-          <h3 id="agreement-header">{this.props.agreement[0].subject}</h3>
-          <p id="agreement-body">{this.props.agreement[0].body}</p>
-          <input type="checkbox" /><span>I Agree</span>
-        </Modal>
        </form>
       </div>
     );
