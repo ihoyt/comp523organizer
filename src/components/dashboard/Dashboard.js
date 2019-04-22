@@ -24,6 +24,7 @@ class Dashboard extends Component {
 
   getSemesterChoices = () => {
     const { proposals } = this.props;
+
     let choices = [];
     let distinct = []; // Used to track if semester has already been added as option
 
@@ -63,8 +64,18 @@ class Dashboard extends Component {
   componentDidUpdate(prevProps, prevState) {
     const semesters = this.getSemesterChoices();
     const recent = this.findMostRecentSemester(semesters);
-    console.log(prevProps);
+
     if (typeof prevProps.proposals === "undefined") {
+      this.setState({
+        filter: recent.value
+      });
+    }
+  }
+
+  componentDidMount() {
+    if (typeof this.props.proposals !== "undefined") {
+      const semesters = this.getSemesterChoices();
+      const recent = this.findMostRecentSemester(semesters);
       this.setState({
         filter: recent.value
       });
