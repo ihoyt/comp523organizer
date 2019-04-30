@@ -28,7 +28,8 @@ class CreateProposal extends Component {
     proposeePhone: '',
     proposeeURL: '',
     modalIsOpen: false,
-    hasAcceptedAgreement: false
+    hasAcceptedAgreement: false,
+    agreement: ''
   }
 
   handleChange = (e) => {
@@ -38,6 +39,7 @@ class CreateProposal extends Component {
   }
 
   componentDidMount() {
+    this.afterOpenModal = this.afterOpenModal.bind(this);
     Modal.setAppElement("#proposal-form");
   }
 
@@ -50,6 +52,10 @@ class CreateProposal extends Component {
 
   openModal= () => {
     this.setState({modalIsOpen: true});
+  }
+
+  afterOpenModal() {
+    document.getElementById("agreement").innerHTML = this.props.agreement[0].body;
   }
 
   closeModal = () => {
@@ -74,8 +80,11 @@ class CreateProposal extends Component {
 
       let tempDiv = document.createElement("div");
       tempDiv.innerHTML = this.props.agreement[0].body;
-      const body = tempDiv.textContent || tempDiv.innerText || "";
-      
+      //const body = tempDiv.textContent || tempDiv.innerText || "";
+      //const body = this.props.agreement[0].body;
+
+      //console.log(body);
+
     return(
       <div className="container" id="proposal-form">
         <form onSubmit={this.handleSubmit} className="white create-form">
@@ -125,12 +134,13 @@ class CreateProposal extends Component {
          <Modal
            isOpen={this.state.modalIsOpen}
            onRequestClose={this.closeModal}
+           onAfterOpen={this.afterOpenModal}
            style={customStyles}
            contentLabel="Agreement"
           >
           <div className="modal-div">
             <h3 id="agreement-header">{this.props.agreement[0].subject}</h3>
-            <div id="agreement">{body}</div>
+            <div id="agreement"></div>
             <p><br /></p>
             <div className="row">
             <div className="col s2">
