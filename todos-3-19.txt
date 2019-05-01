@@ -1,9 +1,0 @@
--form validation
--send emails
--filter by semester per category (?)
--user agreement agreeing before submission
--fix email template not saving links
--route for create project for proposees - added admin routes in another branch, havent merged in yet, users will use base route (Ian)
--submit PPT with proposal
--auth
--look less like shite
