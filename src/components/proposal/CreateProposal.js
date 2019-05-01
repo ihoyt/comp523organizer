@@ -132,7 +132,17 @@ class CreateProposal extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     //console.log(this.state);
-    this.props.createProposal(this.state);
+    const proposal = {
+      title: this.state.title,
+      summary: this.state.summary,
+      proposeeFname: this.state.proposeeFname,
+      proposeeLname: this.state.proposeeLname,
+      proposeeEmail: this.state.proposeeEmail,
+      proposeeOrg:this.state.proposeeOrg,
+      proposeePhone: this.state.proposeePhone,
+      proposeeURL: this.state.proposeeURL
+    }
+    this.props.createProposal(proposal);
     this.props.history.push('/success');
   }
 
