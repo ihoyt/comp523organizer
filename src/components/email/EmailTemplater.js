@@ -4,6 +4,11 @@ import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
 import EmailTemplate from './EmailTemplate';
 
+// Uncomment this line once all templates are created in database
+// in order to prevent templates randomly not rendering
+// Also uncomment partial line in if statement below at beginning of render()
+//const num_templates = 4;
+
 class EmailTemplater extends Component {
 
   getEmailTemplate = (type) => {
@@ -25,7 +30,8 @@ class EmailTemplater extends Component {
 
   render() {
     const { emails } = this.props;
-    if (emails) {
+
+    if (emails /* && emails.length >= num_templates */) {
       return(
         <div className="container email-templater">
           <h3 className="center">Templates</h3>

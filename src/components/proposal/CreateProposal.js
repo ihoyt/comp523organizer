@@ -224,7 +224,7 @@ class CreateProposal extends Component {
             <div className="col s2">
               <button className="btn blue" ref="accept" disabled={this.state.hasAcceptedAgreement} onClick={this.acceptAgreement}>Accept</button>
             </div>
-            <div className="col s2"><button className="btn" onClick={this.closeModal}>Close</button></div>
+              <div className="col s2"><button className="btn" onClick={this.closeModal}>Close</button></div>
             </div>
           </div>
         </Modal>
