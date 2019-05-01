@@ -10,7 +10,10 @@ import EmailTemplate from './EmailTemplate';
 //const num_templates = 4;
 
 class EmailTemplater extends Component {
+  // Passed in emails as props
 
+  // Iterates through passed in email templates to find the template that
+  // matches the requested category
   getEmailTemplate = (type) => {
     const { emails } = this.props;
     if (emails) {

@@ -6,12 +6,15 @@ class SignIn extends Component {
     password: ''
   }
 
+  // Use the event object e to update the state when this is called
   handleChange = (e) => {
     this.setState({
       [e.target.id]: e.target.value
     });
   }
 
+  // This is to stop the default behavior of the submit button, and disallow
+  // weirdness that might happen if the form auto-submitted
   handleSubmit = (e) => {
     e.preventDefault();
   }

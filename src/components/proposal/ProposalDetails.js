@@ -6,12 +6,15 @@ import { changeProposalCategory } from '../../store/actions/proposalActions';
 
 const  ProposalDetails = (props) => {
   const { proposal, id } = props;
+  // Maps proposal prop number passed in to a corrresponding string
   const category =  !proposal ? null
                     : proposal.category === 0 ? 'New'
                     : proposal.category === 1 ? 'Accepted'
                     : proposal.category === 2 ? 'Maybe'
                     : 'Rejected';
 
+  // Prevents default submission behavior, and invokes function passed in
+  // from props
   const handleSubmit = (e) => {
     e.preventDefault();
     if (proposal) {

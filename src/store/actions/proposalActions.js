@@ -8,6 +8,8 @@ export const createProposal = (proposal) => {
     let date = date_obj.getMonth() < 7 ? "Spring " : "Fall ";
     date += (date_obj.getFullYear() + "").substring(2);
 
+    // Connects to firestore database in order to add a new proposal,
+    // and then dispatches action to redux
     firestore.collection('proposals').add({
       ...proposal,
       semester: date,
@@ -25,6 +27,8 @@ export const changeProposalCategory = (categoryChange) => {
     // make async call to
     const firestore = getFirestore();
 
+    // Connects to firestore database in order to update a proposal,
+    // and then dispatches action to redux
     firestore.collection('proposals').doc(categoryChange.id).set({
       ...categoryChange.proposal,
       category: categoryChange.category

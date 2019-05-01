@@ -126,6 +126,9 @@ class CreateProposal extends Component {
     Modal.setAppElement("#proposal-form");
   }
 
+
+  // Prevents the default behavior of a submitted form, and instead invokes
+  // a passed in function through props
   handleSubmit = (e) => {
     e.preventDefault();
     //console.log(this.state);
@@ -145,6 +148,8 @@ class CreateProposal extends Component {
     this.setState({modalIsOpen: false});
   }
 
+  // Once the user has clicked on Accept button, the state changes,
+  // the modal closes, and the agreement is removed from the DOM
   acceptAgreement = (e) => {
     this.setState({
       hasAcceptedAgreement: true,

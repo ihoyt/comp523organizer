@@ -5,6 +5,7 @@ import { changeEmailTemplate } from '../../store/actions/emailActions';
 import ReactQuill from 'react-quill';
 
 class EmailTemplate extends Component {
+  // Email will be passed in as a prop
 
   state = {
     subject: '',
@@ -12,6 +13,8 @@ class EmailTemplate extends Component {
   }
 
   handleChange = (e) => {
+    // If there's a target in the event, update that target, otherwise updated
+    // the body with quill's current value
     if (e.target) {
       this.setState({
         [e.target.id]: e.target.value
@@ -64,11 +67,14 @@ class EmailTemplate extends Component {
 
   componentDidMount() {
     const {email} = this.props;
+    // If any email was passed in
     if (email) {
       this.setState({
         subject: email.subject,
         body: email.body
       }, () => {
+        // The below block sets the default text in the HTML component to be
+        // the text of the template
         let subj_input = this.refs.subject;
         subj_input.value = this.state.subject;
         let quill = this.refs.quill;
@@ -87,7 +93,8 @@ class EmailTemplate extends Component {
     if (email) {
 
       let type = email.type;
-      type = type.charAt(0).toUpperCase() + type.slice(1);
+      type = type.charAt(0).toUpperCase() + type.slice(1);  //Capitalizes the type
+      // Adds 'Proposals' to title text if not an agreement template
       const formTitle = type === 'Agreement' ? type : type + " Proposals";
 
       return(

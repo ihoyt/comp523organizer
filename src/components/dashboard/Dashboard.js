@@ -20,6 +20,8 @@ const customStyles = {
 };
 
 class Dashboard extends Component {
+  // The props passed to this component will be a ProposalList as defined in
+  // ../proposal/ProposalList
 
   state = {
     filter: null,
@@ -34,11 +36,12 @@ class Dashboard extends Component {
     if (proposals) {
       let pros = proposals.filter(proposal => {
         return proposal.category === category && proposal.semester === filter;
-      });
+      }); // Returns a ProposalList filtered both by the semester and category
       return pros;
     }
   }
 
+  // Returns an array of all the semesters that have proposals in them
   getSemesterChoices = () => {
     const { proposals } = this.props;
 
@@ -47,6 +50,8 @@ class Dashboard extends Component {
 
     if (proposals) {
       proposals.forEach(function(proposal) {
+        // Checks each proposal to see if its blank, exists, or has a category
+        // that's already been added
         if (!distinct.includes(proposal.semester) && proposal.semester !== ""
               && typeof proposal.semester !== "undefined") {
           distinct.push(proposal.semester);
@@ -60,10 +65,14 @@ class Dashboard extends Component {
   findMostRecentSemester(semesters) {
     let recent = semesters[0];
     for (let i = 0; i < semesters.length; i++) {
+      // Deletes any char in the semester that's not
+      // a digit and sets year to it
       var year = semesters[i].value.replace( /^\D+/g, '');
+      // If current most recent year same as iterated semester
       if (year > recent.value.replace( /^\D+/g, '')) {
         recent = semesters[i];
-      } else if (year === recent.value.replace( /^\D+/g, '')) {
+      } else if (year === recent.value.replace( /^\D+/g, '')) {  //if same year
+        // Most recent if the iterated semester is the Fall semester
         if (recent.value.includes("Spring") && semesters[i].value.includes("Fall")) {
           recent = semesters[i];
         }
@@ -72,12 +81,14 @@ class Dashboard extends Component {
     return recent;
   }
 
+  // Sets the filer to what was chosen in the drop-down menu
   handleChange = (filter) => {
     this.setState({
         filter: filter.value}, () => {
     });
   }
 
+  // On component update, set the filter to the most recent semester
   componentDidUpdate(prevProps, prevState) {
     const semesters = this.getSemesterChoices();
     const recent = this.findMostRecentSemester(semesters);
@@ -89,6 +100,7 @@ class Dashboard extends Component {
     }
   }
 
+  // On component mount, set the filter to the most recent semester
   componentDidMount() {
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
@@ -115,7 +127,6 @@ class Dashboard extends Component {
     proposals.forEach(function(p) {
       emails.push(p.proposeeEmail)
     });
-    
   }
 
   openModal(e) {
@@ -150,6 +161,8 @@ class Dashboard extends Component {
   render() {
     const { proposals } = this.props;
 
+    // Only render main aspect of the dashboard if there are any proposals to
+    // show
     if (proposals) {
       let semesters = this.getSemesterChoices();
       const recent = this.findMostRecentSemester(semesters);

@@ -8,6 +8,7 @@ import CreateProposal from './components/proposal/CreateProposal';
 import EmailTemplater from './components/email/EmailTemplater';
 import EmailSender from './components/email/EmailSender';
 
+//Handles all of the URI requests, serving the associated component in the app div when the appropiate button is clicked
 class App extends Component {
   render() {
     return (

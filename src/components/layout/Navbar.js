@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import SignedInLinks from './SignedInLinks';
 
 const Navbar = () => {
+  // The actual UI HTML elements for navigating the different routes of
+  // the web app
   return (
     <nav className='nav-wrapper blue darken-3'>
       <div className='container'>
