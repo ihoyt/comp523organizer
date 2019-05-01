@@ -25,7 +25,7 @@ be built to the /public folder of the project
 -Select Database from the left-hand menu, and select Create Database  
 -Select Start in test mode and click enable
 -From here add the following collections: 'emails' and 'proposals'  
--The schemas are as follows:
+-The schemas are as follows:  
 email- body: string, subject: string, type: string  
 proposals- category: int, proposeeEmail, proposeeFname, proposeeLname, proposeeOrg, proposeePhone,
                 proposeeURL, semester, summary, and title (all strings)  
