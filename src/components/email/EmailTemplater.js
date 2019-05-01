@@ -3,9 +3,18 @@ import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
 import EmailTemplate from './EmailTemplate';
+import { Redirect } from 'react-router-dom';
+
+// Uncomment this line once all templates are created in database
+// in order to prevent templates randomly not rendering
+// Also uncomment partial line in if statement below at beginning of render()
+//const num_templates = 4;
 
 class EmailTemplater extends Component {
+  // Passed in emails as props
 
+  // Iterates through passed in email templates to find the template that
+  // matches the requested category
   getEmailTemplate = (type) => {
     const { emails } = this.props;
     if (emails) {
@@ -24,13 +33,14 @@ class EmailTemplater extends Component {
   }
 
   render() {
-    const { emails } = this.props;
-    if (emails) {
+    const { emails, auth } = this.props;
+    if (!auth.uid) return <Redirect to='/signin' />
+
+    if (emails /* && emails.length >= num_templates */) {
       return(
         <div className="container email-templater">
           <h3 className="center">Templates</h3>
           <h4>Email</h4>
-          <EmailTemplate email={this.getEmailTemplate('request') } />
           <EmailTemplate email={this.getEmailTemplate('accepted') } />
           <EmailTemplate email={this.getEmailTemplate('maybe') } />
           <EmailTemplate email={this.getEmailTemplate('rejected') } />
@@ -51,7 +61,8 @@ class EmailTemplater extends Component {
 
 const mapStateToProps = (state) => {
   return {
-      emails: state.firestore.ordered.emails
+      emails: state.firestore.ordered.emails,
+      auth: state.firebase.auth
   };
 };
 
