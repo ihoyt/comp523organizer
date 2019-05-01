@@ -82,6 +82,10 @@ class Dashboard extends Component {
     }
   }
 
+  sendMail() {
+    console.log("Send mail");
+  }
+
   render() {
     const { proposals } = this.props;
 
@@ -98,22 +102,36 @@ class Dashboard extends Component {
               onChange={this.handleChange}
             />
           </div>
-          <h3 className="roboto-font center dashboard-h">New</h3>
+
           <div className="container">
+            <h5 className="roboto-font dashboard-h">New</h5>
             <ProposalList proposals={this.getProposalsByCategory(0)} />
+            <div className="center">
+              <button onClick={this.sendMail} className="btn waves-effect green darken-2">Email group</button>
+            </div>
           </div>
-          <h3 className="roboto-font center dashboard-h">Accepted</h3>
           <div className="container">
+            <h5 className="roboto-font dashboard-h">Accepted</h5>
             <ProposalList proposals={this.getProposalsByCategory(1)} />
+            <div className="center">
+              <button onClick={this.sendMail} className="btn waves-effect green darken-2">Email group</button>
+            </div>
           </div>
-          <h3 className="roboto-font center dashboard-h">Maybe</h3>
           <div className="container">
+            <h5 className="roboto-font dashboard-h">Maybe</h5>
             <ProposalList proposals={this.getProposalsByCategory(2)} />
+            <div className="center">
+              <button onClick={this.sendMail} className="btn waves-effect green darken-2">Email group</button>
+            </div>
           </div>
-          <h3 className="roboto-font center dashboard-h">Rejected</h3>
           <div className="container">
+            <h5 className="roboto-font dashboard-h">Rejected</h5>
             <ProposalList proposals={this.getProposalsByCategory(3)} />
+            <div className="center">
+              <button onClick={this.sendMail} className="btn waves-effect green darken-2">Email group</button>
+            </div>
           </div>
+          <p><br /></p>
         </div>
       );
     } else {

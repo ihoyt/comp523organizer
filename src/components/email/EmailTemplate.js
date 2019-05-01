@@ -91,7 +91,8 @@ class EmailTemplate extends Component {
       const formTitle = type === 'Agreement' ? type : type + " Proposals";
 
       return(
-        <Collapsible trigger={formTitle}>
+        <div>
+        <Collapsible trigger={formTitle} triggerTagName="h6">
           <form onSubmit={this.handleSubmit} className="white" ref="form">
            <h5 className="grey-text text-darken-3">{type}</h5>
            <div className="input-field">
@@ -109,6 +110,7 @@ class EmailTemplate extends Component {
            </div>
          </form>
        </Collapsible>
+     </div>
       )
     } else {
       return null;
