@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
 import EmailTemplate from './EmailTemplate';
+import { Redirect } from 'react-router-dom';
 
 // Uncomment this line once all templates are created in database
 // in order to prevent templates randomly not rendering
@@ -32,7 +33,8 @@ class EmailTemplater extends Component {
   }
 
   render() {
-    const { emails } = this.props;
+    const { emails, auth } = this.props;
+    if (!auth.uid) return <Redirect to='/signin' />
 
     if (emails /* && emails.length >= num_templates */) {
       return(
@@ -59,7 +61,8 @@ class EmailTemplater extends Component {
 
 const mapStateToProps = (state) => {
   return {
-      emails: state.firestore.ordered.emails
+      emails: state.firestore.ordered.emails,
+      auth: state.firebase.auth
   };
 };
 

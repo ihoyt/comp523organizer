@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { firestoreConnect} from 'react-redux-firebase';
 import { compose } from 'redux';
 import { changeProposalCategory } from '../../store/actions/proposalActions';
+import { Redirect } from 'react-router-dom';
 
 const  ProposalDetails = (props) => {
   const { proposal, id } = props;
@@ -28,6 +29,8 @@ const  ProposalDetails = (props) => {
   }
 
   if (proposal) {
+    const { auth } = props;
+    if (!auth.uid) return <Redirect to='/' />
     let url = '';
     if (proposal.proposeeURL) {
       url = proposal.proposeeURL.includes('http') ? proposal.proposeeURL : 'http://' + proposal.proposeeURL;
@@ -71,7 +74,8 @@ const mapStateToProps = (state, ownProps) => {
 
     return {
       proposal: proposal,
-      id: id
+      id: id,
+      auth: state.firebase.auth
     }
 }
 
