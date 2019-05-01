@@ -5,6 +5,7 @@ import Dashboard from './components/dashboard/Dashboard';
 import ProposalDetails from './components/proposal/ProposalDetails';
 import SignIn from './components/auth/SignIn';
 import CreateProposal from './components/proposal/CreateProposal';
+import SubmitSuccess from './components/proposal/SubmitSuccess';
 import EmailTemplater from './components/email/EmailTemplater';
 import EmailSender from './components/email/EmailSender';
 
@@ -22,6 +23,7 @@ class App extends Component {
             <Route path='/create' component={CreateProposal} />
             <Route path='/sendmail' component={EmailSender} />
             <Route path='/templates' component={EmailTemplater} />
+            <Route path='/success' component={SubmitSuccess} />
           </Switch>
         </div>
       </BrowserRouter>

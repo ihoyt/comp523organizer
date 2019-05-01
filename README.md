@@ -1,68 +1,34 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Development Server Install
+-clone the repository to the desired location on your computer - git clone <repo>
+-cd into the project directory
+-run 'npm install' to download and install project dependencies
+-run 'npm start' to run the development Server
 
-## Available Scripts
+If you would like to create a production build for deployment on a server other than Heroku, run 'npm build' and the project will
+be built to the /public folder of the project
 
-In the project directory, you can run:
+### Heroku deployment
+-Log in to Heroku
+-Click 'Create New App'
+-Choose app name and click 'Create app'
+-Select GitHub under the 'Deployment method' section of the interface
+-Enter the repository name (not the url) in the search box and choose 'Connect' to link the GitHub repo to Heroku
+-From here, either choose 'Deploy Branch' under Manual Deploy at the bottom of the screen (will have to be run everytime changes
+  are made to the code), or select 'Enable Automatic Deploys' in order for Heroku to automatically re-deploy whenever code changes are detected
 
-### `npm start`
+### Firebase Setup
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### App Usage
+## Dashboard
+Here is the main interface for viewing and categorizing projects. Proposals are split into 4 categories: New proposals that have not yet been categorized, accepted, maybe, and rejected proposals. The semester filter allows the user to view proposals from previous semesters. Clicking on a proposal will bring the user to the ProposalDetails componentDidMount
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+## Proposal Details
+Here information about the proposal can be viewed. The proposal can be categorized using the buttons below the proposal information.
 
-### `npm test`
+## Create Proposal
+A form for submitting project proposals. This is the only page/component viewable by an unauthenticated user. All form fields must be valid and the user have accepted the user agreement for submission to be enabled. Form validation checks to make sure all fields (except option URL) are populated and checks proper formatting of the email and phone number fields. Form validation can be modified within the validateFields() function of the CreateProposal component
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Send email
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+## Templates
+Here is where the email templates can be modified. Each template consists of a dropdown allowing the user to modify the subject line and actual content of the template. React-Quill allows for HTML type formatting of the email body, as well as insertion of links.

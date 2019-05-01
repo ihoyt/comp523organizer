@@ -133,7 +133,7 @@ class CreateProposal extends Component {
     e.preventDefault();
     //console.log(this.state);
     this.props.createProposal(this.state);
-    this.props.history.push('/');
+    this.props.history.push('/success');
   }
 
   openModal= () => {
