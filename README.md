@@ -35,16 +35,16 @@ The email schema must be created in order for the app to function properly, howe
 No method to create users exists within the application itself (due to the small number of authenticated users needed), however users can be added using the Firebase Authentication interface. From the main Firebase console, select Authentication from the menu on the left. The first time this is done on a new project, the sign-in method must be selected. Enable email/password as the sign-in provider (Google could also possibly be used, but this is untested). From here select Users from the menu at the top, and a new user can be added. At least one user must exist in order to access pages other than the Create Proposal form.
 
 ## App Usage
-### Dashboard
+### Dashboard URL='/'
 Here is the main interface for viewing and categorizing projects. Proposals are split into 4 categories: New proposals that have not yet been categorized, accepted, maybe, and rejected proposals. The semester filter allows the user to view proposals from previous semesters. Clicking on a proposal will bring the user to the ProposalDetails
 
 ### Proposal Details
 Here information about the proposal can be viewed. The proposal can be categorized using the buttons below the proposal information.
 
-### Create Proposal
+### Create Proposal URL='/create'
 A form for submitting project proposals. This and the submission success screen are the only pages/components viewable by an unauthenticated user. All form fields must be valid and the user have accepted the user agreement for submission to be enabled. Form validation checks to make sure all fields (except optional URL) are populated and checks proper formatting of the email and phone number fields. Form validation can be modified within the validateFields() function of the CreateProposal component
 
-### Send email
+### Send email URL='/sendmail'
 
-### Templates
+### Templates URL='/templates'
 Here is where the email templates can be modified. Each template consists of a dropdown allowing the user to modify the subject line and actual content of the template. React-Quill allows for HTML type formatting of the email body, as well as insertion of links.
